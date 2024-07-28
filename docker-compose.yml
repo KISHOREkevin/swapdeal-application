@@ -1,0 +1,25 @@
+version: "2.5"
+services : 
+    server:
+      build:
+        context: ./server
+        dockerfile: dockerfile
+      image: swapdeal-backend
+      container_name: swap-back
+      command: npm start
+      ports: 
+         - "3000:3000"
+      env_file: ./server/.env
+
+    client:
+      build:
+        context: ./client
+        dockerfile: dockerfile
+      image: swapdeal-frontend
+      container_name: swap-front
+      command: npm run dev
+      ports:
+        - "5173:5173"
+      env_file: ./client/.env
+
+          

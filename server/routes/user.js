@@ -1,0 +1,11 @@
+import express from "express";
+import { createUser, deleteUser, getAllUsers, getSingleUser, updateUser, userAuth } from "../controllers/user.js";
+import userAvatars from "../services/useravatars.js";
+const userRoutes = express.Router();
+userRoutes.get("/",getAllUsers);
+userRoutes.get("/user/:userid",getSingleUser);
+userRoutes.post("/create-user",userAvatars.single("userimage"),createUser);
+userRoutes.post("/user-auth",userAuth);
+userRoutes.put("/update-user/:userid",userAvatars.single("userimage"),updateUser);
+userRoutes.delete("/delete-user/:userid",deleteUser);
+export default userRoutes;
